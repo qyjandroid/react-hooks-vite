@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./About.less";
 import { useNavigate } from "react-router-dom";
 
-export function Component() {
+export const Component: React.FC = () => {
   const [listData, setListData] = useState([]);
   const navigate = useNavigate();
 
@@ -48,4 +48,4 @@ export function Component() {
       <div className="about-container">{renderList()}</div>
     </div>
   );
-}
+};

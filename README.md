@@ -1,5 +1,3 @@
-# React + TypeScript + Vite
-
 
 <h1 align="center">Welcome to React + TypeScript + Vite 👋</h1>
 <p>
@@ -12,7 +10,7 @@
 
 > react hooks 项目模板
 
-### 🏠 [Homepage](https://github.com/qyjandroid/react-project-template)
+### 🏠 [Homepage](https://github.com/qyjandroid/react-hooks-vite)
 
 ## Prerequisites
 
@@ -108,13 +106,12 @@ react-hooks-vite
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/qyjandroid/react-project-template/issues). 
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/qyjandroid/react-hooks-vite/issues). 
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+
 
 

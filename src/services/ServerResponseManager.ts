@@ -1,5 +1,9 @@
 import { AxiosError, AxiosResponse } from 'axios';
 
+type Hashmap = {  //声明类型
+  [K:string]:any 
+}
+
 /**
  * 针对请求成功：返回的 code 码做不同的响应处理
  */
@@ -11,7 +15,7 @@ class ServerResponseSuccessManager {
   codeParser(response: AxiosResponse) {
     const code = response?.data?.errCode;
     const resData = response?.data?.data;
-    const parser = {
+    const parser:Hashmap = {
       '10010': () => {
         this.handleCodeIs10010(resData);
       },

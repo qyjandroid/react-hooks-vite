@@ -94,6 +94,8 @@ react-hooks-vite
 
 - 项目直接使用px即可
   
+- 增加移动端兼容适配，在index.html中配置设计稿尺寸（pxToRem 为 100px=1rem）
+  
   
 
 

@@ -18,6 +18,7 @@
       font-feature-settings: "tnum";
       height: 100%;
       background-color: #c8c4dc;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -25,6 +26,71 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
+  <div id="_test_"
+    style="width:1rem; height: 0; border: 0; margin: 0; padding: 0; box-sizing: border-box; position: absolute; top: -100px;">
+  </div>
+  <script>
+    var htmlElement = document.querySelector("html");
+    //设计稿宽度
+    var designWidth = window._FG_CONFIG && window._FG_CONFIG.DS || 750;
+    var getHtmlFs = () => parseFloat(window.getComputedStyle(htmlElement, null)['font-size']);
+
+
+    function getFontSize() {
+      //第一次进来没有设置过html标签font-size的时候
+      var screenWidth = getScreenWidth();
+      var htmlFs = getHtmlFs();
+      // 设置1rem为100px
+      var mediaFs = 100 * screenWidth / designWidth; //获取页面宽度  实际fontSize/理想fontSize=实际屏幕宽度/设计稿宽度;
+      return mediaFs;
+    };
+
+
+    function setFontSize(fontSize) {
+      var fontSizeValue = fontSize || getFontSize();
+      htmlElement.style.fontSize = fontSizeValue + "px";
+      window.FONT_SIZE = fontSizeValue;
+    }
+
+    var getScreenWidth = () => {
+      var htmlWidth = 0;
+      try {
+        var htmlElement = document.documentElement;
+        htmlWidth = Math.max(
+          htmlElement.offsetWidth || 0,
+          htmlElement.clientWidth || 0,
+          htmlElement.getBoundingClientRect().width || 0,
+        );
+      } catch (e) {
+        console.log('获取屏幕宽度出错');
+      }
+      return htmlWidth | 0;
+    };
+
+    setFontSize();
+
+    function adjustFontSize() {
+      var fontSizeValue = getFontSize();
+      // 读取测试元素的宽度
+      var testElement = document.getElementById("_test_");
+      var testFontSize = testElement.clientWidth;
+
+      console.log("pre:realFontSizeValue", fontSizeValue, "testFontSize:", testFontSize);
+
+      // 误差大于2，重置fontSize
+      if (Math.abs(fontSizeValue - testFontSize) > 2) {
+        var resetValue = ((fontSizeValue * fontSizeValue) / testFontSize).toFixed(2);
+        console.log("pre:resize font-size from ", fontSizeValue, " to ", resetValue);
+        setFontSize(resetValue);
+      }
+      testElement.parentNode.removeChild(testElement);
+    }
+    window.addEventListener("DOMContentLoaded", adjustFontSize);
+
+    window.addEventListener("resize", function () {
+      setFontSize();
+    })
+  </script>
 </body>
 
 </html>
